@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow - Mis Tareas</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="assets/logo.png" alt="logo" onerror="this.parentElement.innerHTML='<span class=\'mark-fallback\'>T</span>'"/>
+        </div>
+        <span class="brand-name">Tareas</span>
+      </div>
+      <div class="topbar-right">
+        <div class="stats-pill">
+          <span id="done-count">0</span>/<span id="total-count">0</span>
+          <span class="stats-label">listas</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Cambiar tema">
+          <span class="theme-icon">☀</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <section class="add-panel">
+        <div class="input-group">
+          <input type="text" id="task-input" class="task-input" placeholder="¿Qué hay que hacer?" maxlength="120" autocomplete="off" />
+        </div>
+
+        <div class="add-meta">
+          <div class="meta-group">
+            <span class="meta-label">Prioridad</span>
+            <div class="priority-select" id="priority-select">
+              <button class="prio-btn active" data-priority="low">Baja</button>
+              <button class="prio-btn" data-priority="medium">Media</button>
+              <button class="prio-btn" data-priority="high">Alta</button>
+            </div>
+          </div>
+
+          <button class="add-btn" id="add-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Agregar
+          </button>
+        </div>
+      </section>
+
+      <div class="filter-row">
+        <div class="filters">
+          <button class="f-btn active" data-filter="all">Todas</button>
+          <button class="f-btn" data-filter="active">Activas</button>
+          <button class="f-btn" data-filter="completed">Listas</button>
+        </div>
+        <button class="clear-done" id="clear-done">Borrar terminadas</button>
+      </div>
+
+      <div class="task-area" id="task-area">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-graphic">
+            <img src="assets/empty.png" alt="vacío" onerror="this.style.display='none'"/>
+            <div class="empty-circle"></div>
+          </div>
+          <p class="empty-title">Todo despejado</p>
+          <p class="empty-sub">Agrega una tarea para comenzar el día</p>
+        </div>
+
+        <ul class="task-list" id="task-list"></ul>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <span class="modal-task-title" id="modal-task-title"></span>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="progress-label" id="progress-label">0%</span>
+      </div>
+
+      <div class="subtask-input-row">
+        <input type="text" id="subtask-input" class="subtask-input" placeholder="Nuevo paso…" maxlength="80" />
+        <button class="subtask-add-btn" id="subtask-add-btn">+</button>
+      </div>
+
+      <ul class="subtask-list" id="subtask-list"></ul>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
