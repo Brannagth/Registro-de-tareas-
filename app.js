@@ -1,12 +1,12 @@
 'use strict';
 
-// ── VARIABLES DEL SISTEMA (ESTADO) ──
-let tasks = [];            // Aquí guardamos todas las tareas
-let currentFilter = 'all'; // Filtro actual: todas, activas o listas
-let activePriority = 'low';// Prioridad seleccionada por defecto
-let openTaskId = null;     // ID de la tarea que tenemos abierta en el modal
 
-// ── ELEMENTOS DE LA PANTALLA (DOM) ──
+let tasks = [];           
+let currentFilter = 'all'; 
+let activePriority = 'low';
+let openTaskId = null;     
+
+
 const taskInput     = document.getElementById('task-input');
 const addBtn         = document.getElementById('add-btn');
 const taskList      = document.getElementById('task-list');
@@ -18,7 +18,7 @@ const themeToggle   = document.getElementById('theme-toggle');
 const filterBtns    = document.querySelectorAll('.f-btn');
 const prioBtns      = document.querySelectorAll('.prio-btn');
 
-// Elementos del Modal (Ventana emergente)
+
 const overlay       = document.getElementById('modal-overlay');
 const modalTitle    = document.getElementById('modal-task-title');
 const progressFill  = document.getElementById('progress-fill');
@@ -36,12 +36,12 @@ function init() {
   bindEvents();   // Activar los clics y teclas
 }
 
-// ── EVENTOS (CLICS Y TECLAS) ──
+
 function bindEvents() {
   addBtn.addEventListener('click', addTask);
   taskInput.addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
 
-  // Botones de prioridad
+
   prioBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       prioBtns.forEach(b => b.classList.remove('active'));
@@ -50,7 +50,7 @@ function bindEvents() {
     });
   });
 
-  // Botones de filtro
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -63,7 +63,6 @@ function bindEvents() {
   clearDoneBtn.addEventListener('click', clearCompleted);
   themeToggle.addEventListener('click', toggleTheme);
 
-  // Cerrar el modal
   modalClose.addEventListener('click', closeModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
@@ -73,10 +72,10 @@ function bindEvents() {
   subtaskInput.addEventListener('keydown', e => { if (e.key === 'Enter') addSubtask(); });
 }
 
-// ── AGREGAR TAREA ──
+
 function addTask() {
   const text = taskInput.value.trim();
-  if (!text) { shake(taskInput); return; } // Si está vacío, vibra
+  if (!text) { shake(taskInput); return; } 
 
   tasks.unshift({
     id: Date.now(),
@@ -98,7 +97,7 @@ function addTask() {
 function deleteTask(id) {
   const li = taskList.querySelector(`[data-id="${id}"]`);
   if (!li) return;
-  li.classList.add('removing'); // Animación de salida
+  li.classList.add('removing'); 
   li.addEventListener('animationend', () => {
     tasks = tasks.filter(t => t.id !== id);
     save();
@@ -111,7 +110,7 @@ function toggleTask(id) {
   const t = tasks.find(t => t.id === id);
   if (!t) return;
   t.completed = !t.completed;
-  // Si marcas la tarea como lista, se marcan todos sus pasos también
+
   if (t.completed) t.subtasks.forEach(s => s.completed = true);
   save();
   renderTasks();
@@ -172,7 +171,7 @@ function renderTasks() {
   }
 }
 
-// Lógica de filtrado
+
 function getFiltered() {
   switch (currentFilter) {
     case 'active':    return tasks.filter(t => !t.completed);
@@ -181,7 +180,7 @@ function getFiltered() {
   }
 }
 
-// Generador de HTML para cada tarea
+
 function taskHTML(t) {
   const age = getAge(t.createdAt, t.completed);
   const { pct, done, total } = getProgress(t);
@@ -216,7 +215,7 @@ function taskHTML(t) {
   `;
 }
 
-// Conectar botones de cada tarea
+// Conectar botones de tarea
 function attachTaskEvents() {
   taskList.querySelectorAll('.task-item').forEach(li => {
     const id = Number(li.dataset.id);
@@ -228,7 +227,7 @@ function attachTaskEvents() {
   });
 }
 
-// ── VENTANA DE SUBTAREAS (MODAL) ──
+// ── VENTANA DE SUBTAREAS  ──
 function openSubtasks(id) {
   const t = tasks.find(t => t.id === id);
   if (!t) return;
@@ -277,7 +276,6 @@ function toggleSubtask(idx) {
   const t = tasks.find(t => t.id === openTaskId);
   if (!t) return;
   t.subtasks[idx].completed = !t.subtasks[idx].completed;
-  // Si terminas todos los pasos, la tarea principal se marca como lista
   t.completed = t.subtasks.every(s => s.completed);
   save();
   renderModalSubtasks(t);
@@ -313,9 +311,7 @@ function loadTheme() {
   themeToggle.querySelector('.theme-icon').textContent = saved === 'dark' ? '☾' : '☀';
 }
 
-// ── FUNCIONES DE AYUDA (HELPERS) ──
 
-// Calcular progreso de subtareas
 function getProgress(t) {
   const total = t.subtasks.length;
   if (!total) return { pct: 0, done: 0, total: 0 };
@@ -323,7 +319,6 @@ function getProgress(t) {
   return { pct: Math.round((done / total) * 100), done, total };
 }
 
-// Calcular hace cuánto se creó la tarea
 function getAge(ts, completed) {
   if (completed) return { label: '', cls: '' };
   const mins = Math.floor((Date.now() - ts) / 60000);
@@ -335,24 +330,23 @@ function getAge(ts, completed) {
   return { label: `${Math.floor(days)}d`, cls: 'old' };
 }
 
-// Etiquetas de prioridad
 function priLabel(p) {
   return p === 'low' ? 'Baja' : p === 'medium' ? 'Media' : 'Alta';
 }
 
-// Evitar inyección de código (seguridad básica)
+
 function escHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// Poner el cursor al final del texto al editar
+
 function moveCursorToEnd(el) {
   const r = document.createRange(), s = window.getSelection();
   r.selectNodeContents(el); r.collapse(false);
   s.removeAllRanges(); s.addRange(r);
 }
 
-// Animación de vibración para errores
+
 function shake(el) {
   el.style.animation = 'none';
   el.offsetHeight;
@@ -363,7 +357,6 @@ const shakeKf = document.createElement('style');
 shakeKf.textContent = `@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}`;
 document.head.appendChild(shakeKf);
 
-// Mensaje de aviso rápido
 let _toastT;
 function toast(msg) {
   const el = document.getElementById('toast');

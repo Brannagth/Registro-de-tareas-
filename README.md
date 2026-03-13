@@ -1,38 +1,37 @@
-# TaskFlow — lista y revisa tusa tareas 
-es una aplicación de lista de tareas (To-Do List) minimalista, rápida y elegante. Diseñada para ayudarte a organizar tu día sin distracciones, con soporte para prioridades, subtareas y modo oscuro.
+# lista y revisa tusa tareas  TaskFlow
+TaskFlow es una aplicación de gestión de tareas minimalista, rápida y elegante. Diseñada para organizar tu flujo de trabajo diario sin distracciones, combinando una estética limpia con funciones potentes como gestión de subtareas y sistema de prioridades.
+
+## Características Principales
+
+1. Gestión Completa: Crea, elimina y edita tareas. La edición es intuitiva mediante doble clic sobre el texto.
+2. Subtareas Dinámicas: Divide objetivos grandes en pasos accionables con seguimiento de progreso individual.
+3. Sistema de Prioridades: Clasificación visual por colores (Alta, Media, Baja) para un enfoque inmediato.
+4. Modo Oscuro Nativo: Interfaz adaptativa que protege tu vista y respeta la configuración del sistema.
+5. Indicador de Antigüedad: Las tareas muestran cuánto tiempo llevan creadas (minutos, horas o días).
+6. Persistencia Total: Los datos se sincronizan automáticamente con LocalStorage (taskflow_v2).
+7.Diseño Responsivo: Optimizado para una experiencia fluida tanto en escritorio como en dispositivos móviles.
 
 ## Estructura del proyecto
 
 taskflow/
 ├── assets/          # Logos e iconos en caso de querer o agregar 
-├── index.html       # Estructura principal
-├── style.css        # Estilos y animaciones
-├── app.js           # Lógica y funciones
-└── README.md        # Documentación
+├── index.html       
+├── style.css        
+├── app.js           
+└── README.md       
 
 
-## Características Principales
-
-.Gestión de Tareas: Crea, edita (doble clic) y elimina tareas fácilmente.
-.Subtareas: Divide tareas grandes en pasos más pequeños.
-.Prioridades: Clasifica tus pendientes en Alta, Media o Baja.
-.Modo Oscuro: Cambia el tema para proteger tu vista.
-.Diseño Responsivo: Funciona perfecto en computadoras y celulares.
-.Persistencia: Tus datos no se borran al cerrar el navegador.
 
 
 ## Cómo usar
 
-1. Instalación: No requiere. Solo abre index.html en cualquier navegador.
-2. Agregar: Escribe tu tarea, elige una prioridad y presiona Enter o el botón Agregar.
-3. Completar: Haz clic en el círculo de la izquierda para marcar como lista.
-4. Editar: Haz doble clic sobre el texto de cualquier tarea para modificarlo.
-5. Subtareas: Haz clic en el botón + Subtareas para abrir el panel de pasos.
-6. Filtros: Organiza tu vista usando los botones: Todas, Activas o Listas.
-7. Limpiar: Usa el botón Borrar terminadas para vaciar las tareas completadas de un golpe.
+1. Instalación: No requiere dependencias. Clona el repo y abre index.html en tu navegador.
+2. Añadir Tarea: Escribe el pendiente, selecciona la prioridad y presiona Enter.
+3. Progreso: Haz clic en el círculo lateral para completar. Si una tarea tiene subtareas, se marcará automáticamente al completar todos los pasos.
+4. Panel de Pasos: Usa el botón + Subtareas para abrir el modal de gestión detallada.
+5. Organización: Filtra por Activas o Completadas para limpiar tu área de trabajo visual.
 
-## Datos guardados en LocalStorage
 
-La aplicación utiliza el LocalStorage del navegador para que no pierdas tu información.
+## Licencia
 
-Clave de datos: taskflow_v2
+Este proyecto simple, es de código abierto.

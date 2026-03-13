@@ -3,16 +3,16 @@
   --font-body: 'Geist', 'Helvetica Neue', sans-serif;
 
   /* --- TEMA CLARO --- */
-  --bg:           #f5f4f0; /* Fondo de la página */
-  --surface:      #ffffff; /* Fondo de tarjetas y paneles */
-  --surface-2:    #f0efe9; /* Tonos secundarios */
-  --border:       #e3e1d9; /* Bordes suaves */
-  --border-2:     #d4d1c8; /* Bordes un poco más fuertes */
-  --text:         #1a1916; /* Texto principal */
-  --text-2:       #5c5a52; /* Texto secundario */
-  --text-3:       #9e9b91; /* Texto muy suave (placeholders) */
+  --bg:           #f5f4f0; 
+  --surface:      #ffffff; 
+  --surface-2:    #f0efe9; 
+  --border:       #e3e1d9; 
+  --border-2:     #d4d1c8; 
+  --text:         #1a1916; 
+  --text-2:       #5c5a52; 
+  --text-3:       #9e9b91; 
 
-  /* Colores para las prioridades */
+  /* Colores  prioridades */
   --prio-low:     #4a9a6a;
   --prio-med:     #d97706;
   --prio-high:    #dc2626;
@@ -28,14 +28,14 @@
   --done-line:    #c8c5bc;
   --done-text:    #b0ad9e;
 
-  /* Medidas de diseño */
+
   --radius:       14px;
   --radius-sm:    8px;
   --shadow-sm:    0 1px 3px rgba(0,0,0,0.08);
   --shadow:       0 4px 20px rgba(0,0,0,0.09);
   --shadow-lg:    0 12px 40px rgba(0,0,0,0.14);
 
-  /* Colores según la "edad" de la tarea */
+
   --age-ok:       var(--text-3);
   --age-warn:     #d97706;
   --age-old:      #dc2626;
@@ -70,7 +70,8 @@
   --shadow-lg:    0 12px 40px rgba(0,0,0,0.6);
 }
 
-/* ── LIMPIEZA INICIAL (RESET) ── */
+
+/* ── RESET ── */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 18px; }
 body {
@@ -128,7 +129,7 @@ input  { font-family: inherit; }
 }
 .topbar-right { display: flex; align-items: center; gap: 0.8rem; }
 
-/* Pequeña pastilla de estadísticas */
+
 .stats-pill {
   font-size: 0.8rem;
   font-weight: 500;
@@ -141,7 +142,7 @@ input  { font-family: inherit; }
 }
 .stats-label { color: var(--text-3); font-weight: 400; }
 
-/* Botón para cambiar entre modo luz y oscuridad */
+
 .theme-toggle {
   width: 34px; height: 34px;
   border-radius: 50%;
@@ -184,7 +185,7 @@ input  { font-family: inherit; }
 .task-input::placeholder { color: var(--text-3); }
 .task-input:focus { border-bottom-color: var(--accent); }
 
-/* Ajustes de prioridad y botón de agregar */
+/* Ajustes prioridad de agregar */
 .add-meta {
   display: flex;
   align-items: center;
@@ -268,7 +269,7 @@ input  { font-family: inherit; }
 }
 .clear-done:hover { color: var(--prio-high); }
 
-/* ── CONTENEDOR DE LA LISTA ── */
+/* ── CONTENEDOR LISTA ── */
 .task-area {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -280,7 +281,7 @@ input  { font-family: inherit; }
   flex-direction: column;
 }
 
-/* ── ESTADO VACÍO (SIN TAREAS) ── */
+/* ── SIN TAREAS ── */
 .empty-state {
   display: none;
   flex-direction: column;
@@ -328,7 +329,7 @@ input  { font-family: inherit; }
 .task-item:last-child { border-bottom: none; }
 .task-item:hover { background: var(--surface-2); }
 
-/* Animaciones de entrada y salida */
+/* Animaciones entrada salida */
 @keyframes itemIn {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -341,7 +342,7 @@ input  { font-family: inherit; }
   to { opacity: 0; max-height: 0; padding: 0; border: none; }
 }
 
-/* Rayita lateral de prioridad */
+
 .task-item::before {
   content: '';
   position: absolute;
@@ -354,7 +355,7 @@ input  { font-family: inherit; }
 .task-item[data-priority="medium"]::before { background: var(--prio-med); }
 .task-item[data-priority="high"]::before    { background: var(--prio-high); }
 
-/* El círculo del checkbox */
+
 .task-check {
   width: 20px; height: 20px;
   min-width: 20px;
@@ -381,7 +382,7 @@ input  { font-family: inherit; }
   display: block;
 }
 
-/* Cuerpo de la tarea (texto y detalles) */
+
 .task-body {
   flex: 1;
   min-width: 0;
@@ -413,7 +414,6 @@ input  { font-family: inherit; }
   text-decoration-color: var(--done-line);
 }
 
-/* Fila de info (prioridad, tiempo, subtareas) */
 .task-meta {
   display: flex;
   align-items: center;
@@ -440,7 +440,6 @@ input  { font-family: inherit; }
 .age-badge.warn { color: var(--age-warn); }
 .age-badge.old  { color: var(--age-old); font-weight: 500; }
 
-/* Pequeña barra de progreso para subtareas */
 .mini-progress {
   display: flex;
   align-items: center;
@@ -468,7 +467,7 @@ input  { font-family: inherit; }
   min-width: 2rem;
 }
 
-/* Botón para ver subtareas */
+/* Botón subtareas */
 .subtask-btn {
   background: transparent;
   border: 1px solid var(--border);
@@ -483,7 +482,6 @@ input  { font-family: inherit; }
 }
 .subtask-btn:hover { border-color: var(--border-2); color: var(--text-2); }
 
-/* Acciones rápidas (aparecen al pasar el mouse) */
 .task-actions {
   display: flex;
   flex-direction: column;
@@ -506,7 +504,7 @@ input  { font-family: inherit; }
 }
 .del-btn:hover { background: var(--prio-high-bg); color: var(--prio-high); }
 
-/* ── VENTANA EMERGENTE (MODAL) ── */
+/* ── VENTANA EMERGENTE ── */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -565,7 +563,7 @@ input  { font-family: inherit; }
 }
 .modal-close:hover { border-color: var(--border-2); color: var(--text); }
 
-/* Barra de progreso dentro del modal */
+/* Barra progreso dentro de modal */
 .progress-area { display: flex; align-items: center; gap: 0.75rem; }
 .progress-track {
   flex: 1;
@@ -671,7 +669,7 @@ input  { font-family: inherit; }
 .subtask-item:hover .sub-del { opacity: 1; }
 .sub-del:hover { color: var(--prio-high); }
 
-/* ── TOAST (AVISO FLOTANTE) ── */
+/* ── TOAST── */
 .toast {
   position: fixed;
   bottom: 1.5rem;
@@ -696,7 +694,7 @@ input  { font-family: inherit; }
 @media (max-width: 480px) {
   body { padding: 0 0.75rem 4rem; }
   .topbar { padding: 1.2rem 0 1.1rem; }
-  .task-actions { opacity: 1; } /* Siempre visible en móviles */
+  .task-actions { opacity: 1; }
   .del-btn { opacity: 0.6; }
   .add-meta { flex-wrap: wrap; gap: 0.6rem; }
 }
